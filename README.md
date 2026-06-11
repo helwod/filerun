@@ -1,12 +1,15 @@
 ### FileRun
 This repository contains a Docker image for FileRun (version 20220519), which is the last available free version of the FileRun product that was released several years ago. As FileRun has transitioned to a commercial model, where only the latest versions require a purchase, this image serves as a stable reference point for users who need access to this earlier version.
+该仓库包含 FileRun 的 Docker 映像（版本 20220519），这是 FileRun 产品最后一个免费版本，发布于数年前。随着FileRun已转向商业模式，仅最新版本需要购买，该图像为需要访问早期版本的用户提供了一个稳定的参考点。
 
-### Overview
+### Overview 概述
 FileRun is a robust file management system that offers a range of features to enhance productivity and collaboration. This Docker image allows you to quickly set up FileRun in a containerized environment, leveraging Docker’s capabilities to streamline deployment and management. With this image, you can access essential functionalities without the need for ongoing updates that may disrupt your workflow.
+FileRun 是一个强大的文件管理系统，提供多种功能以提升生产力和协作。这个 Docker 镜像让你能够快速在容器化环境中搭建 FileRun，利用 Docker 的功能简化部署和管理。有了这张图片，你可以访问关键功能，无需持续更新，避免打乱工作流程。
 
-### Docker Compose Configuration
+
+### Docker Compose Configuration 配置
 Below is the docker-compose.yml configuration for setting up the FileRun environment, which includes the necessary services such as the database, web server, Tika for document processing, and Elasticsearch for enhanced search capabilities.
-
+以下是建立 FileRun 环境的docker-compose.yml配置，包含数据库、网页服务器、用于文档处理的 Tika 以及增强搜索功能的 Elasticsearch 、onlyoffice。
 ```yaml
 version: "3.8"
 
@@ -112,7 +115,7 @@ services:
     stdin_open: true
     restart: unless-stopped
     ports:
-      - "8881:80"  # ✅ 确保宿主机 8888 映射到容器 80
+      - "8881:80"  # ✅ 确保宿主机 8881 映射到容器 80
     environment:
       # --- 基础配置 ---
       # --- HTTPS 配置 (初次调试建议注释掉，调通后再开启)（如果你没有配置证书文件挂载，建议先注释掉以下三行，使用 HTTP 测试连通性） ---
@@ -182,6 +185,24 @@ client_max_body_size 1000M;
 # 可选：调整客户端超时时间（大文件上传建议延长）
 client_body_timeout 300s;
 proxy_read_timeout 300s;
+
+```
+
+###中文语言切换操作
+点左下角 Control panel 进入后台面板， 点左侧 interface，再点 Upload language file 后面的按钮 上传语言文件 chinese.php 。
+然后刷新页面，Default language: 选择 chinese 保存，再刷新即可。
+
+###从其他系统导入文件
+直接移动到 卷的持久化目录 即可，但需要修改一下权限,容器里面执行下面命令
+```plaintext
+ chown -R www-data:www-data  /user-files
+```
+
+###安装预览插件 再容器里面执行
+```bash
+apt update
+apt install libreoffice  # 安装office预览
+apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-noto-cjk # office中文字体
 
 ```
 
