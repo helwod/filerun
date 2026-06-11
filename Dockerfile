@@ -2,7 +2,7 @@
 FROM gaibz/ubuntu20-php7.4-nginx:latest
 
 # Set label
-LABEL maintainer="mrizkihidayat66"
+LABEL maintainer="helwod"
 
 # Set non-interactive mode for apt-get
 ENV DEBIAN_FRONTEND=noninteractive
@@ -56,6 +56,15 @@ RUN \
     cp "/tmp/ioncube/ioncube_loader_lin_7.4.so" /usr/lib/php/20190902/ && \
     echo "zend_extension=ioncube_loader_lin_7.4.so" >> /etc/php/7.4/fpm/conf.d/00_ioncube_loader_lin_7.4.ini && \
     rm -rf /tmp/*
+
+#安装 LibreOffice 和中文字体
+RUN \
+    echo "**** install libreoffice fonts ****" && \
+    apt-get update && apt-get install -y \
+    libreoffice \
+    fonts-wqy-zenhei \
+    fonts-wqy-microhei \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy FileRun (local zip instead of download)
 COPY FileRun_20220519_PHP73-74.zip /tmp/filerun.zip
