@@ -206,6 +206,16 @@ apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-noto-cjk # office中文字
 
 ```
 
+###反代设置
+反代服务设置上代码
+```
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-Protocol $scheme;
+proxy_set_header X-Forwarded-Port $server_port;
+```
+
 ### Website Setup
 <img src="images/6QZhRvNpM1ZnzwkSfK11ERpX.jpg">
 <img src="images/RyOxSYmp1cMjdmsJFeGZENrG.jpg">
