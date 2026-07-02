@@ -188,7 +188,7 @@ proxy_read_timeout 300s;
 
 ```
 
-###中文语言切换操作
+### 中文语言切换操作
 点左下角 Control panel 进入后台面板， 点左侧 interface，再点 Upload language file 后面的按钮 上传语言文件 chinese.php 。
 然后刷新页面，Default language: 选择 chinese 保存，再刷新即可。
 
@@ -198,7 +198,7 @@ proxy_read_timeout 300s;
  chown -R www-data:www-data  /user-files
 ```
 
-###安装预览插件 再容器里面执行
+### 安装预览插件 再容器里面执行
 ```bash
 apt update
 apt install libreoffice  # 安装office预览
@@ -206,7 +206,7 @@ apt install fonts-wqy-zenhei fonts-wqy-microhei fonts-noto-cjk # office中文字
 
 ```
 
-###反代设置
+### 反代设置
 反代服务设置上代码
 ```
 proxy_set_header Host $host;
